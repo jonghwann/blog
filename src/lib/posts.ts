@@ -4,14 +4,12 @@ import matter from 'gray-matter';
 import path from 'path';
 import removeMd from 'remove-markdown';
 import type { Frontmatter, MdxFile } from '@/types/mdx';
-import type { Post, Tag } from '@/types/post';
+import type { Post, PostNavigation, Tag } from '@/types/post';
 
-const BASE_PATH = process.cwd();
-const POSTS_PATH = path.join(BASE_PATH, 'src/content');
+const POSTS_PATH = path.join(process.cwd(), 'src/content');
 
 /**
- * 모든 MDX 파일을 파싱합니다.
- * @returns slug, frontmatter, content를 포함한 배열
+ * content 폴더의 모든 MDX 파일을 읽고 파싱합니다.
  */
 function parseMdxFiles(): MdxFile[] {
   const files = readdirSync(POSTS_PATH);
@@ -28,20 +26,28 @@ function parseMdxFiles(): MdxFile[] {
 }
 
 /**
- * 콘텐츠에서 마크다운을 제거하고 description을 생성합니다.
+ * 코드 블록과 마크다운 문법을 제거하고 description을 생성합니다.
  * @param content - MDX 콘텐츠
  * @param maxLength - 최대 길이 (기본값: 150)
  */
 function generateDescription(content: string, maxLength = 150): string {
   const withoutCode = content.replace(/```[\s\S]*?```/g, '').replace(/`[^`]+`/g, '');
   const text = removeMd(withoutCode).replace(/\s+/g, ' ').trim();
+
   return text.length > maxLength ? text.slice(0, maxLength) + '…' : text;
 }
 
 /**
+ * 포스트를 최신순으로 정렬합니다.
+ */
+function sortPostsByDate(posts: Post[]): Post[] {
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+/**
  * 포스트 목록을 조회합니다.
- * @param tag - 필터링할 태그 (선택사항)
- * @returns 날짜순으로 정렬된 포스트 배열
+ * @param tag - 특정 태그로 필터링 (선택사항)
+ * @returns 최신순으로 정렬된 포스트 배열
  */
 export function getPosts(tag?: string): Post[] {
   const mdxFiles = parseMdxFiles();
@@ -60,12 +66,12 @@ export function getPosts(tag?: string): Post[] {
     ? posts.filter(({ tags }) => tags?.some(({ name }) => name === tag))
     : posts;
 
-  return filteredPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return sortPostsByDate(filteredPosts);
 }
 
 /**
- * 모든 태그와 사용 횟수를 조회합니다.
- * @returns 사용 횟수 기준 내림차순으로 정렬된 태그 배열
+ * 태그 목록을 조회합니다.
+ * @returns 사용 횟수가 많은 순으로 정렬된 태그 배열
  */
 export function getTags(): Tag[] {
   const mdxFiles = parseMdxFiles();
@@ -79,4 +85,58 @@ export function getTags(): Tag[] {
 
   const tags = Array.from(tagCountMap.entries()).map(([name, count]) => ({ name, count }));
   return tags.sort((a, b) => b.count - a.count);
+}
+
+/**
+ * 단일 포스트를 조회합니다.
+ * @param slug - 조회할 포스트의 slug
+ */
+export function getPost(slug: string): Post {
+  const mdxFiles = parseMdxFiles();
+  const post = mdxFiles.find((mdxFile) => mdxFile.slug === slug);
+
+  if (!post) throw new Error('Post not found');
+
+  const {
+    data: { title, date, tags },
+  } = post;
+
+  return {
+    slug,
+    title,
+    date: dayjs(date).format('MMMM DD, YYYY'),
+    tags: tags?.map((tag) => ({ name: tag })),
+  };
+}
+
+/**
+ * 이전/다음 포스트 정보를 조회합니다.
+ * @param slug - 현재 포스트의 slug
+ * @returns 최신순 기준 이전/다음 포스트 정보
+ */
+export function getPostNavigation(slug: string): PostNavigation {
+  const mdxFiles = parseMdxFiles();
+
+  const posts = sortPostsByDate(
+    mdxFiles.map(({ slug, data: { title, date } }) => ({
+      slug,
+      title,
+      date: dayjs(date).format('MMMM DD, YYYY'),
+    })),
+  );
+
+  const currentIndex = posts.findIndex((post) => post.slug === slug);
+
+  if (currentIndex === -1) throw new Error('Post not found');
+
+  return {
+    prev:
+      currentIndex > 0
+        ? { slug: posts[currentIndex - 1].slug, title: posts[currentIndex - 1].title }
+        : null,
+    next:
+      currentIndex < posts.length - 1
+        ? { slug: posts[currentIndex + 1].slug, title: posts[currentIndex + 1].title }
+        : null,
+  };
 }
