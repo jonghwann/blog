@@ -26,6 +26,25 @@ function parseMdxFiles(): MdxFile[] {
 }
 
 /**
+ * MDX 파일을 Post 객체로 변환합니다.
+ */
+function mdxFileToPost(mdxFile: MdxFile): Post {
+  const {
+    slug,
+    data: { title, date, tags },
+    content,
+  } = mdxFile;
+
+  return {
+    slug,
+    title,
+    date: dayjs(date).format('MMMM DD, YYYY'),
+    description: generateDescription(content),
+    tags: tags?.map((tag) => ({ name: tag })),
+  };
+}
+
+/**
  * 코드 블록과 마크다운 문법을 제거하고 description을 생성합니다.
  * @param content - MDX 콘텐츠
  * @param maxLength - 최대 길이 (기본값: 150)
@@ -52,15 +71,7 @@ function sortPostsByDate(posts: Post[]): Post[] {
 export function getPosts(tag?: string): Post[] {
   const mdxFiles = parseMdxFiles();
 
-  const posts = mdxFiles.map(({ slug, data: { title, date, tags }, content }) => {
-    return {
-      slug,
-      title,
-      date: dayjs(date).format('MMMM DD, YYYY'),
-      description: generateDescription(content),
-      tags: tags?.map((tag) => ({ name: tag })),
-    };
-  });
+  const posts = mdxFiles.map(mdxFileToPost);
 
   const filteredPosts = tag
     ? posts.filter(({ tags }) => tags?.some(({ name }) => name === tag))
@@ -139,4 +150,23 @@ export function getPostNavigation(slug: string): PostNavigation {
         ? { slug: posts[currentIndex + 1].slug, title: posts[currentIndex + 1].title }
         : null,
   };
+}
+
+/**
+ * 포스트를 검색합니다.
+ * @param query - 검색어 (제목, 본문 검색)
+ * @returns 최신순으로 정렬된 포스트 배열
+ */
+export function searchPosts(query: string): Post[] {
+  query = query.toLowerCase().trim();
+  const mdxFiles = parseMdxFiles();
+
+  const filteredFiles = query
+    ? mdxFiles.filter(
+        ({ data: { title }, content }) =>
+          title.toLowerCase().includes(query) || content.toLowerCase().includes(query),
+      )
+    : mdxFiles;
+
+  return sortPostsByDate(filteredFiles.map(mdxFileToPost));
 }
