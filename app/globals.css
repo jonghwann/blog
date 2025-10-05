@@ -2,25 +2,67 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #424242;
+  --border: #e0e0e0;
+  --shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+  --shadow-code: 0 0.2em 0.6em #e0e0e0;
+  --secondary: #f1f3f5;
+  --secondary-foreground: #757575;
+  --secondary-hover: #dee2e6;
+  --tertiary-foreground: #868e96;
+  --accent-foreground: #567EC0;
+  --inverse: #424242;
+  --inverse-foreground: #ffffff;
+  --inverse-hover: #606060;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-border: var(--border);
+  --color-shadow: var(--shadow);
+  --color-shadow-code: var(--shadow-code);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-inverse-hover: var(--inverse-hover);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #212529;
+    --foreground: #ffffff;
+    --border: #424242;
+    --shadow: 0px 0px 8px rgba(150, 150, 150, 0.08);
+    --shadow-code: 0 0.2em 0.6em #1a1e22;
+    --secondary: #2d2d2d;
+    --secondary-foreground: #bdbdbd;
+    --secondary-hover: #404040;
+    --tertiary-foreground: #adb5bd;
+    --inverse: #ffffff;
+    --inverse-foreground: #212529;
+    --inverse-hover: #e8e8e8;
   }
+}
+
+* {
+  border-color: var(--border);
+  transition-property: background-color, color, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-color-transitions * {
+  transition-property: opacity, transform !important;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
