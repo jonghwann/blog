@@ -9,7 +9,7 @@ export default function Page() {
     <div>
       {posts.map((post) => (
         <div key={post.slug}>
-          <h2>{post.title}</h2>
+          <h2 className="font-nanum-square-round">{post.title}</h2>
           <p>{post.description}</p>
           <p>{post.date}</p>
           <p>{post.tags?.map((tag) => tag.name)}</p>
