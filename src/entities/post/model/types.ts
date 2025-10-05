@@ -1,7 +1,4 @@
-export interface Tag {
-  name: string;
-  count?: number;
-}
+import type { Tag } from '@/entities/tag';
 
 export interface Post {
   slug: string;

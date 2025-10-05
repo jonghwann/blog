@@ -1,6 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import Test from '@/components/test';
-import { searchPostsAction } from '../../actions/search';
+import { searchPostsAction } from '@/entities/post';
 
 interface PageProps {
   searchParams: Promise<{ q: string }>;
@@ -17,9 +16,5 @@ export default async function Page({ searchParams }: PageProps) {
     queryFn: () => searchPostsAction(search),
   });
 
-  return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Test />
-    </HydrationBoundary>
-  );
+  return <HydrationBoundary state={dehydrate(queryClient)}></HydrationBoundary>;
 }

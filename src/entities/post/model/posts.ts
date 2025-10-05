@@ -1,29 +1,8 @@
 import dayjs from 'dayjs';
-import { readdirSync, readFileSync } from 'fs';
-import matter from 'gray-matter';
-import path from 'path';
 import removeMd from 'remove-markdown';
-import type { Frontmatter, MdxFile } from '@/types/mdx';
-import type { Post, PostNavigation, Tag } from '@/types/post';
-
-const POSTS_PATH = path.join(process.cwd(), 'src/content');
-
-/**
- * content 폴더의 모든 MDX 파일을 읽고 파싱합니다.
- */
-function parseMdxFiles(): MdxFile[] {
-  const files = readdirSync(POSTS_PATH);
-  const mdxFiles = files.filter((file) => file.endsWith('.mdx'));
-
-  return mdxFiles.map((mdxFile) => {
-    const slug = mdxFile.replace(/\.mdx$/, '');
-    const fullPath = path.join(POSTS_PATH, mdxFile);
-    const file = readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(file);
-
-    return { slug, data: data as Frontmatter, content };
-  });
-}
+import { parseMdxFiles } from '@/shared/lib';
+import type { MdxFile } from '@/shared/types';
+import type { Post, PostNavigation } from './types';
 
 /**
  * MDX 파일을 Post 객체로 변환합니다.
@@ -78,24 +57,6 @@ export function getPosts(tag?: string): Post[] {
     : posts;
 
   return sortPostsByDate(filteredPosts);
-}
-
-/**
- * 태그 목록을 조회합니다.
- * @returns 사용 횟수가 많은 순으로 정렬된 태그 배열
- */
-export function getTags(): Tag[] {
-  const mdxFiles = parseMdxFiles();
-  const tagCountMap = new Map<string, number>();
-
-  mdxFiles.forEach(({ data: { tags } }) => {
-    tags?.forEach((tag) => {
-      tagCountMap.set(tag, (tagCountMap.get(tag) ?? 0) + 1);
-    });
-  });
-
-  const tags = Array.from(tagCountMap.entries()).map(([name, count]) => ({ name, count }));
-  return tags.sort((a, b) => b.count - a.count);
 }
 
 /**

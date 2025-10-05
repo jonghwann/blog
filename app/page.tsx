@@ -1,4 +1,5 @@
-import { getPosts, getTags } from '@/lib/posts';
+import { getPosts } from '@/entities/post';
+import { getTags } from '@/entities/tag';
 
 export default function Page() {
   const posts = getPosts();
