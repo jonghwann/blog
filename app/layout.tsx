@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next';
 import { QueryProvider } from '@/app/providers';
 import { nanumSquare, nanumSquareRound, sourceCodePro } from '@/shared/config';
+import { cn } from '@/shared/lib';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -17,7 +18,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${nanumSquare.variable} ${nanumSquareRound.variable} ${sourceCodePro.variable} antialiased`}
+        className={cn(
+          nanumSquare.variable,
+          nanumSquareRound.variable,
+          sourceCodePro.variable,
+          'antialiased',
+        )}
       >
         <QueryProvider>
           <NuqsAdapter>{children}</NuqsAdapter>
