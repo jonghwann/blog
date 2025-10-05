@@ -3,6 +3,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next';
 import { QueryProvider } from '@/app/providers';
 import { nanumSquare, nanumSquareRound, sourceCodePro } from '@/shared/config';
 import { cn } from '@/shared/lib';
+import { Layout } from '@/widgets/layout/ui';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -26,7 +27,9 @@ export default function RootLayout({
         )}
       >
         <QueryProvider>
-          <NuqsAdapter>{children}</NuqsAdapter>
+          <NuqsAdapter>
+            <Layout>{children}</Layout>
+          </NuqsAdapter>
         </QueryProvider>
       </body>
     </html>
