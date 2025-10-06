@@ -1,3 +1,4 @@
+import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
 
 interface LayoutProps {
@@ -9,7 +10,7 @@ export async function Layout({ children }: LayoutProps) {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="mx-auto mt-25 flex w-full max-w-[712px] flex-1 px-4">{children}</main>
-      <footer />
+      <Footer />
     </div>
   );
 }
