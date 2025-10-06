@@ -19,7 +19,7 @@ function mdxFileToPost(mdxFile: MdxFile): Post {
     title,
     date: dayjs(date).format('MMMM DD, YYYY'),
     description: generateDescription(content),
-    tags: tags?.map((tag) => ({ name: tag })),
+    tags,
   };
 }
 
@@ -52,9 +52,7 @@ export function getPosts(tag?: string): Post[] {
 
   const posts = mdxFiles.map(mdxFileToPost);
 
-  const filteredPosts = tag
-    ? posts.filter(({ tags }) => tags?.some(({ name }) => name === tag))
-    : posts;
+  const filteredPosts = tag ? posts.filter(({ tags }) => tags?.includes(tag)) : posts;
 
   return sortPostsByDate(filteredPosts);
 }
@@ -77,7 +75,7 @@ export function getPost(slug: string): Post {
     slug,
     title,
     date: dayjs(date).format('MMMM DD, YYYY'),
-    tags: tags?.map((tag) => ({ name: tag })),
+    tags,
   };
 }
 
