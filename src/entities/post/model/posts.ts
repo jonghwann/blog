@@ -49,9 +49,7 @@ function sortPostsByDate(posts: Post[]): Post[] {
  */
 export function getPosts(tag?: string): Post[] {
   const mdxFiles = parseMdxFiles();
-
   const posts = mdxFiles.map(mdxFileToPost);
-
   const filteredPosts = tag ? posts.filter(({ tags }) => tags?.includes(tag)) : posts;
 
   return sortPostsByDate(filteredPosts);
