@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import removeMd from 'remove-markdown';
-import { parseMdxFiles } from '@/shared/lib';
+import { parseMdxFiles } from '@/shared/lib/mdx-parser';
 import type { MdxFile } from '@/shared/types';
 import type { Post, PostNavigation } from './types';
 

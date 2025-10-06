@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next';
-import { QueryProvider } from '@/app/providers';
+import { QueryProvider, ThemeProvider } from '@/app/providers';
 import { nanumSquare, nanumSquareRound, sourceCodePro } from '@/shared/config';
 import { cn } from '@/shared/lib';
-import { Layout } from '@/widgets/layout/ui';
+import { Layout } from '@/widgets/layout';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body
         className={cn(
           nanumSquare.variable,
@@ -27,9 +27,11 @@ export default function RootLayout({
         )}
       >
         <QueryProvider>
-          <NuqsAdapter>
-            <Layout>{children}</Layout>
-          </NuqsAdapter>
+          <ThemeProvider>
+            <NuqsAdapter>
+              <Layout>{children}</Layout>
+            </NuqsAdapter>
+          </ThemeProvider>
         </QueryProvider>
       </body>
     </html>

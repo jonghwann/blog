@@ -2,6 +2,27 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-shadow: var(--shadow);
+  --color-shadow-code: var(--shadow-code);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-inverse-hover: var(--inverse-hover);
+  --font-nanum-square: var(--font-nanum-square);
+  --font-nanum-square-round: var(--font-nanum-square-round);
+  --font-source-code-pro: var(--source-code-pro);
+  --z-header: 100;
+  --z-scroll-progress-bar: 200;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #424242;
@@ -18,56 +39,31 @@
   --inverse-hover: #606060;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-border: var(--border);
-  --color-shadow: var(--shadow);
-  --color-shadow-code: var(--shadow-code);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary-hover: var(--secondary-hover);
-  --color-tertiary-foreground: var(--tertiary-foreground);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-inverse: var(--inverse);
-  --color-inverse-foreground: var(--inverse-foreground);
-  --color-inverse-hover: var(--inverse-hover);
-  --font-nanum-square-round: var(--font-nanum-square-round);
-  --font-source-code-pro: var(--source-code-pro);
+.dark {
+  --background: #212529;
+  --foreground: #ffffff;
+  --border: #424242;
+  --shadow: 0px 0px 8px rgba(150, 150, 150, 0.08);
+  --shadow-code: 0 0.2em 0.6em #1a1e22;
+  --secondary: #2d2d2d;
+  --secondary-foreground: #bdbdbd;
+  --secondary-hover: #404040;
+  --tertiary-foreground: #adb5bd;
+  --inverse: #ffffff;
+  --inverse-foreground: #212529;
+  --inverse-hover: #e8e8e8;
 }
 
-@variant dark {
-  :root {
-    --background: #212529;
-    --foreground: #ffffff;
-    --border: #424242;
-    --shadow: 0px 0px 8px rgba(150, 150, 150, 0.08);
-    --shadow-code: 0 0.2em 0.6em #1a1e22;
-    --secondary: #2d2d2d;
-    --secondary-foreground: #bdbdbd;
-    --secondary-hover: #404040;
-    --tertiary-foreground: #adb5bd;
-    --inverse: #ffffff;
-    --inverse-foreground: #212529;
-    --inverse-hover: #e8e8e8;
+@layer base {
+  * {
+    @apply border-border transition-colors duration-300 ease-in-out;
   }
-}
 
-* {
-  border-color: var(--border);
-  transition-property: background-color, color, border-color;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
-}
+  body {
+    @apply bg-background text-foreground font-nanum-square;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-nanum-square);
-}
-
-.no-color-transitions * {
-  transition-property: opacity, transform !important;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
+  .no-color-transitions * {
+    @apply !transition-opacity !transition-transform;
+  }
 }
