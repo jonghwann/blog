@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Post } from '@/entities/post';
-import { Tag } from '@/shared/ui';
+import { TagGroup } from '@/entities/tag';
 
 export function PostItem({ slug, title, date, description, tags }: Post) {
   return (
@@ -14,13 +14,7 @@ export function PostItem({ slug, title, date, description, tags }: Post) {
       </time>
       <p className="mb-8 font-nanum-square-round leading-[1.7]">{description}</p>
 
-      <ul className="flex gap-2">
-        {tags?.map((tag) => (
-          <li key={tag}>
-            <Tag href={`/tags/${tag}`}>{tag}</Tag>
-          </li>
-        ))}
-      </ul>
+      <TagGroup tags={tags} />
     </article>
   );
 }
