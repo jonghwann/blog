@@ -1,5 +1,5 @@
-import { getPosts } from '@/entities/post';
-import { getTags } from '@/entities/tag';
+import { getPosts } from '@/entities/post/model/posts';
+import { getTags } from '@/entities/tag/model/tags';
 import { Bio } from '@/widgets/bio';
 import { PostList } from '@/widgets/post-list';
 import { TagList } from '@/widgets/tag-list';

@@ -1,5 +1,5 @@
-import { getPosts } from '@/entities/post';
-import { getTags } from '@/entities/tag';
+import { getPosts } from '@/entities/post/model/posts';
+import { getTags } from '@/entities/tag/model/tags';
 import { Title } from '@/shared/ui';
 import { PostList } from '@/widgets/post-list';
 import { TagFilter } from '@/widgets/tag-filter';

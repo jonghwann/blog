@@ -63,7 +63,7 @@ export function getPost(slug: string): Post {
   const mdxFiles = parseMdxFiles();
   const post = mdxFiles.find((mdxFile) => mdxFile.slug === slug);
 
-  if (!post) throw new Error('Post not found');
+  if (!post) throw new Error(`Post not found: ${slug}`);
 
   const {
     data: { title, date, tags },
@@ -95,7 +95,7 @@ export function getPostNavigation(slug: string): PostNavigation {
 
   const currentIndex = posts.findIndex((post) => post.slug === slug);
 
-  if (currentIndex === -1) throw new Error('Post not found');
+  if (currentIndex === -1) throw new Error(`Post not found: ${slug}`);
 
   return {
     prev:
@@ -111,17 +111,17 @@ export function getPostNavigation(slug: string): PostNavigation {
 
 /**
  * 포스트를 검색합니다.
- * @param query - 검색어 (제목, 본문 검색)
+ * @param search - 검색어 (제목, 본문 검색)
  * @returns 최신순으로 정렬된 포스트 배열
  */
-export function searchPosts(query: string): Post[] {
-  query = query.toLowerCase().trim();
+export function searchPosts(search: string): Post[] {
+  search = search.toLowerCase().trim();
   const mdxFiles = parseMdxFiles();
 
-  const filteredFiles = query
+  const filteredFiles = search
     ? mdxFiles.filter(
         ({ data: { title }, content }) =>
-          title.toLowerCase().includes(query) || content.toLowerCase().includes(query),
+          title.toLowerCase().includes(search) || content.toLowerCase().includes(search),
       )
     : mdxFiles;
 

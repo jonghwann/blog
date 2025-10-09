@@ -1,6 +1,6 @@
 'use server';
-import { searchPosts } from '@/entities/post';
+import { searchPosts } from '@/entities/post/model/posts';
 
-export async function searchPostsAction(query: string) {
-  return searchPosts(query);
+export async function searchPostsAction(search: string) {
+  return searchPosts(search);
 }

@@ -1,20 +1,18 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { searchPostsAction } from '@/entities/post';
+import { searchPosts } from '@/entities/post/model/posts';
+import { SearchPage } from '@/pages/search';
 
-interface PageProps {
-  searchParams: Promise<{ q: string }>;
-}
-
-export default async function Page({ searchParams }: PageProps) {
-  const { q } = await searchParams;
-  const search = q ?? '';
-
+export default async function Page() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['search', search],
-    queryFn: () => searchPostsAction(search),
+    queryKey: ['search', ''],
+    queryFn: () => searchPosts(''),
   });
 
-  return <HydrationBoundary state={dehydrate(queryClient)}></HydrationBoundary>;
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <SearchPage />
+    </HydrationBoundary>
+  );
 }

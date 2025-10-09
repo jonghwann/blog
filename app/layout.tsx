@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { NuqsAdapter } from 'nuqs/adapters/next';
 import { QueryProvider, ThemeProvider } from '@/app/providers';
 import { nanumSquare, nanumSquareRound, sourceCodePro } from '@/shared/config';
 import { cn } from '@/shared/lib';
@@ -28,9 +27,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           <ThemeProvider>
-            <NuqsAdapter>
-              <Layout>{children}</Layout>
-            </NuqsAdapter>
+            <Layout>{children}</Layout>
           </ThemeProvider>
         </QueryProvider>
       </body>
