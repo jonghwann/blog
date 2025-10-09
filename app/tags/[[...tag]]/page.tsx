@@ -4,9 +4,9 @@ import { Title } from '@/shared/ui';
 import { PostList } from '@/widgets/post-list';
 import { TagFilter } from '@/widgets/tag-filter';
 
-export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
-  const { tag: encodedTag } = await params;
-  const tag = encodedTag && decodeURIComponent(encodedTag);
+export default async function TagPage({ params }: { params: Promise<{ tag?: string[] }> }) {
+  const { tag: tagArray } = await params;
+  const tag = tagArray?.[0] && decodeURIComponent(tagArray[0]);
 
   const tags = getTags();
   const posts = getPosts(tag);
@@ -23,4 +23,11 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
       <PostList posts={posts} />
     </section>
   );
+}
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const tags = getTags();
+  return tags.map(({ name }) => ({ tag: [name] }));
 }
