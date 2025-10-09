@@ -29,5 +29,5 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const tags = getTags();
-  return tags.map(({ name }) => ({ tag: [name] }));
+  return [{ tag: undefined }, ...tags.map(({ name }) => ({ tag: [name] }))];
 }
