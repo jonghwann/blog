@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { PostNavigation } from '@/entities/post';
 import { getPostNavigation, getPosts } from '@/entities/post/model/posts';
+import { ScrollProgressBar } from '@/shared/ui';
 import { Bio } from '@/widgets/bio';
 import { Giscus } from '@/widgets/giscus';
 import { PostNav } from '@/widgets/post-nav';
@@ -20,6 +21,7 @@ export default async function page({ params }: { params: Promise<{ slug: string 
 
   return (
     <section className="mt-3 w-full">
+      <ScrollProgressBar />
       <div />
 
       <div className="flex gap-16">
