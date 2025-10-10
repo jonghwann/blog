@@ -9,6 +9,11 @@ export interface Post {
 }
 
 export interface PostNavigation {
-  prev: { slug: string; title: string } | null;
-  next: { slug: string; title: string } | null;
+  prev: PostNavigationItem | null;
+  next: PostNavigationItem | null;
+}
+
+interface PostNavigationItem {
+  slug: string;
+  title: string;
 }

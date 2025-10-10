@@ -1,14 +1,37 @@
-import { getPosts } from '@/entities/post/model/posts';
+import { notFound } from 'next/navigation';
+import type { PostNavigation } from '@/entities/post';
+import { getPostNavigation, getPosts } from '@/entities/post/model/posts';
+import { Bio } from '@/widgets/bio';
 import { Giscus } from '@/widgets/giscus';
+import { PostNav } from '@/widgets/post-nav';
 
 export default async function page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { default: Post } = await import(`../../content/${slug}.mdx`);
 
+  let navigation: PostNavigation;
+
+  try {
+    navigation = getPostNavigation(slug);
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+
   return (
     <section className="mt-3 w-full">
-      <Post />
-      <Giscus />
+      <div />
+
+      <div className="flex gap-16">
+        <div className="w-full xl:min-w-[680px]">
+          <Post />
+          <PostNav navigation={navigation} />
+          <Bio className="mt-12 border-b pb-8" />
+          <Giscus />
+        </div>
+
+        <div className="hidden min-[1301px]:block" />
+      </div>
     </section>
   );
 }

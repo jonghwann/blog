@@ -18,7 +18,7 @@ export function TagList({ tags, className }: TagListProps) {
             <li key={name} className="leading-[1]">
               <Link
                 href={`/tags/${name}`}
-                className="font-nanum-round text-secondary-foreground hover:text-foreground"
+                className="font-nanum-square-round text-secondary-foreground hover:text-foreground"
               >
                 {name} ({count})
               </Link>
