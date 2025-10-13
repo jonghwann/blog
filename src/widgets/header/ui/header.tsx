@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useScrollVisibility } from '@/shared/hooks';
+import { useScrollVisibility } from '@/shared/lib';
 import { Nav } from './nav';
 import { ThemeToggle } from './theme-toggle';
 

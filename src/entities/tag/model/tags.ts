@@ -1,4 +1,4 @@
-import { parseMdxFiles } from '@/shared/lib/mdx-parser';
+import { parseMdxFiles } from '@/shared/lib/server';
 import type { Tag } from './types';
 
 /**

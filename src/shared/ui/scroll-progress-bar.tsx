@@ -1,5 +1,5 @@
 'use client';
-import { useScrollProgress } from '@/shared/hooks';
+import { useScrollProgress } from '@/shared/lib';
 
 export function ScrollProgressBar() {
   const scrollPercentage = useScrollProgress();
