@@ -4,6 +4,7 @@ export interface Post {
   date: string;
   description?: string;
   content?: string;
+  readingTime?: number;
   tags?: string[];
   series?: string;
 }

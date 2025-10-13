@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
 import { parseMdxFiles } from '@/shared/lib/server';
 import type { MdxFile } from '@/shared/types';
@@ -67,12 +68,14 @@ export function getPost(slug: string): Post {
 
   const {
     data: { title, date, tags },
+    content,
   } = post;
 
   return {
     slug,
     title,
     date: dayjs(date).format('MMMM DD, YYYY'),
+    readingTime: Math.ceil(readingTime(content).minutes),
     tags,
   };
 }
