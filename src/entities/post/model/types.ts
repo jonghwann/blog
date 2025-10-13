@@ -8,12 +8,12 @@ export interface Post {
   series?: string;
 }
 
-export interface PostNavigation {
-  prev: PostNavigationItem | null;
-  next: PostNavigationItem | null;
+export interface Navigation {
+  prev: NavigationItem | null;
+  next: NavigationItem | null;
 }
 
-interface PostNavigationItem {
+interface NavigationItem {
   slug: string;
   title: string;
 }

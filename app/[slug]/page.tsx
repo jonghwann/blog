@@ -1,16 +1,16 @@
 import { notFound } from 'next/navigation';
-import type { PostNavigation } from '@/entities/post';
+import type { Navigation } from '@/entities/post';
 import { getPostNavigation, getPosts } from '@/entities/post/model/posts';
 import { ScrollProgressBar } from '@/shared/ui';
 import { Bio } from '@/widgets/bio';
 import { Giscus } from '@/widgets/giscus';
-import { PostNav } from '@/widgets/post-nav';
+import { PostNavigation } from '@/widgets/post-navigation';
 
-export default async function page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { default: Post } = await import(`../../content/${slug}.mdx`);
 
-  let navigation: PostNavigation;
+  let navigation: Navigation;
 
   try {
     navigation = getPostNavigation(slug);
@@ -27,7 +27,7 @@ export default async function page({ params }: { params: Promise<{ slug: string 
       <div className="flex gap-16">
         <div className="w-full xl:min-w-[680px]">
           <Post />
-          <PostNav navigation={navigation} />
+          <PostNavigation navigation={navigation} />
           <Bio className="mt-12 border-b pb-8" />
           <Giscus />
         </div>

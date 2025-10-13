@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import removeMd from 'remove-markdown';
 import { parseMdxFiles } from '@/shared/lib/server';
 import type { MdxFile } from '@/shared/types';
-import type { Post, PostNavigation } from './types';
+import type { Navigation, Post } from './types';
 
 /**
  * MDX 파일을 Post 객체로 변환합니다.
@@ -82,7 +82,7 @@ export function getPost(slug: string): Post {
  * @param slug - 현재 포스트의 slug
  * @returns 최신순 기준 이전/다음 포스트 정보
  */
-export function getPostNavigation(slug: string): PostNavigation {
+export function getPostNavigation(slug: string): Navigation {
   const mdxFiles = parseMdxFiles();
 
   const posts = sortPostsByDate(

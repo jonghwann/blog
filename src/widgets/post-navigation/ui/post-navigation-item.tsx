@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 import Link from 'next/link';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
-interface PostNavItemProps {
+interface PostNavigationItemProps {
   variant?: 'prev' | 'next';
   slug?: string;
   title?: string;
@@ -49,7 +49,7 @@ const labelVariants = cva('flex w-full font-bold text-xs', {
   },
 });
 
-export function PostNavItem({ variant = 'prev', slug, title }: PostNavItemProps) {
+export function PostNavigationItem({ variant = 'prev', slug, title }: PostNavigationItemProps) {
   const { label, icon: Icon } = config[variant];
 
   if (!slug) return <div />;

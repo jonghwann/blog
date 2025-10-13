@@ -4,7 +4,7 @@ import { Title } from '@/shared/ui';
 import { PostList } from '@/widgets/post-list';
 import { TagFilter } from '@/widgets/tag-filter';
 
-export default async function TagPage({ params }: { params: Promise<{ tag?: string[] }> }) {
+export default async function Page({ params }: { params: Promise<{ tag?: string[] }> }) {
   const { tag: tagArray } = await params;
   const tag = tagArray?.[0] && decodeURIComponent(tagArray[0]);
 

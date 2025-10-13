@@ -1,2 +1,2 @@
 export { searchPostsAction } from './model/actions';
-export type { Post, PostNavigation } from './model/types';
+export type { Navigation, Post } from './model/types';
