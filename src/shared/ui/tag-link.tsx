@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { cn } from '@/shared/lib';
 
-interface TagProps {
+interface TagLinkProps {
   children: React.ReactNode;
   href: string;
   isActive?: boolean;
   className?: string;
 }
 
-export function Tag({ children, href, isActive, className }: TagProps) {
+export function TagLink({ children, href, isActive, className }: TagLinkProps) {
   return (
     <Link
       href={href}

@@ -1,4 +1,4 @@
-import { cn } from '../lib';
+import { cn } from '@/shared/lib';
 
 interface IconProps {
   Icon: React.ElementType;
