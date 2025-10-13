@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={cn(
           nanumSquare.variable,

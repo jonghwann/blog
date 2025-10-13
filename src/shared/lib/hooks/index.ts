@@ -1,2 +1,3 @@
+export { useActiveHeadings } from './use-active-headings';
 export { useScrollProgress } from './use-scroll-progress';
 export { useScrollVisibility } from './use-scroll-visibility';

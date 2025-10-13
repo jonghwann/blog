@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation';
 import type { Navigation, Post } from '@/entities/post';
 import { getPost, getPostNavigation, getPosts } from '@/entities/post/model/posts';
+import { generateToc } from '@/shared/lib';
 import { ScrollProgressBar } from '@/shared/ui';
 import { Bio } from '@/widgets/bio';
 import { Giscus } from '@/widgets/giscus';
 import { PostHeader } from '@/widgets/post-header';
 import { PostNavigation } from '@/widgets/post-navigation';
+import { PostToc } from '@/widgets/post-toc';
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -22,6 +24,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     notFound();
   }
 
+  const toc = generateToc(post.content ?? '');
+
   return (
     <section className="mt-3 w-full">
       <ScrollProgressBar />
@@ -35,7 +39,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <Giscus />
         </div>
 
-        <div className="hidden min-[1301px]:block" />
+        <PostToc className="hidden min-[1301px]:block" toc={toc} />
       </div>
     </section>
   );
