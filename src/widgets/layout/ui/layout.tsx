@@ -1,5 +1,5 @@
-import { Footer } from '@/widgets/footer';
-import { Header } from '@/widgets/header';
+import { Footer } from './footer';
+import { Header } from './header';
 
 export async function Layout({ children }: { children: React.ReactNode }) {
   return (
