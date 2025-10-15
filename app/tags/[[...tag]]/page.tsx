@@ -2,7 +2,7 @@ import { getPosts } from '@/entities/post/model/posts';
 import { getTags } from '@/entities/tag/model/tags';
 import { Title } from '@/shared/ui';
 import { PostList } from '@/widgets/post-list';
-import { TagFilter } from '@/widgets/tag-filter';
+import { TagGroup } from '@/widgets/tag-group';
 
 export default async function Page({ params }: { params: Promise<{ tag?: string[] }> }) {
   const { tag: tagArray } = await params;
@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: Promise<{ tag?: string[
           : `There are ${tags.length} tags.`}
       </Title>
 
-      <TagFilter tags={tags} tag={tag?.slug} className="mb-14" />
+      <TagGroup tags={tags} tag={tag?.slug} className="mb-14" />
       <PostList posts={posts} />
     </section>
   );

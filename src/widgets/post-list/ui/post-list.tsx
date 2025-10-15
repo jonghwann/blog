@@ -1,5 +1,4 @@
-import type { Post } from '@/entities/post';
-import { PostItem } from './post-item';
+import { type Post, PostItem } from '@/entities/post';
 
 export function PostList({ posts }: { posts: Post[] }) {
   return (

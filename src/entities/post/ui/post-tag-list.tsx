@@ -1,7 +1,7 @@
 import { slugify } from '@/shared/lib';
 import { TagLink } from '@/shared/ui';
 
-export function TagGroup({ tags }: { tags?: string[] }) {
+export function PostTagList({ tags }: { tags?: string[] }) {
   return (
     <ul className="flex gap-2">
       {tags?.map((tag) => (

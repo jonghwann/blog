@@ -1,5 +1,5 @@
 import type { Post } from '@/entities/post';
-import { TagGroup } from '@/entities/tag';
+import { PostTagList } from '@/entities/post';
 
 export function PostHeader({ title, date, readingTime, tags }: Post) {
   return (
@@ -12,7 +12,7 @@ export function PostHeader({ title, date, readingTime, tags }: Post) {
         <span>{readingTime} min read</span>
       </div>
 
-      <TagGroup tags={tags} />
+      <PostTagList tags={tags} />
     </div>
   );
 }

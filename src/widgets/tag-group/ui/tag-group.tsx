@@ -2,13 +2,13 @@ import type { Tag } from '@/entities/tag';
 import { cn } from '@/shared/lib';
 import { TagLink } from '@/shared/ui';
 
-interface TagFilterProps {
+interface TagGroupProps {
   tags: Tag[];
   tag?: string;
   className?: string;
 }
 
-export function TagFilter({ tags, tag, className }: TagFilterProps) {
+export function TagGroup({ tags, tag, className }: TagGroupProps) {
   return (
     <ul className={cn('flex flex-wrap items-center gap-2', className)}>
       {tags.map(({ name, slug, count }) => {

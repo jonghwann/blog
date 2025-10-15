@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Post } from '@/entities/post';
-import { TagGroup } from '@/entities/tag';
+import { PostTagList } from '@/entities/post';
 
 export function PostItem({ slug, title, date, description, tags }: Post) {
   return (
@@ -14,7 +14,7 @@ export function PostItem({ slug, title, date, description, tags }: Post) {
       </time>
       <p className="mb-8 font-nanum-square-round leading-[1.7]">{description}</p>
 
-      <TagGroup tags={tags} />
+      <PostTagList tags={tags} />
     </article>
   );
 }
