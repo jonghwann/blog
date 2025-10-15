@@ -14,10 +14,10 @@ export function TagList({ tags, className }: TagListProps) {
         <h3 className="mb-6 font-bold leading-[1]">TAG LIST</h3>
 
         <ul className="flex flex-col gap-4">
-          {tags.map(({ name, count }) => (
-            <li key={name} className="leading-[1]">
+          {tags.map(({ name, slug, count }) => (
+            <li key={slug} className="leading-[1]">
               <Link
-                href={`/tags/${name}`}
+                href={`/tags/${slug}`}
                 className="font-nanum-square-round text-secondary-foreground hover:text-foreground"
               >
                 {name} ({count})

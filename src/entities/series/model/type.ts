@@ -1,5 +1,6 @@
 export interface Series {
-  title: string;
+  name: string;
+  slug: string;
   count: number;
   updatedAt: string;
 }

@@ -1,15 +1,5 @@
 import type { Toc } from '@/shared/types';
-
-/**
- * 제목을 slug 형태로 변환합니다.
- */
-function slugify(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9ㄱ-ㅎㅏ-ㅣ가-힣\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
+import { slugify } from './slugify';
 
 /**
  * 마크다운 콘텐츠에서 목차(TOC)를 생성합니다.

@@ -1,3 +1,4 @@
+import { slugify } from '@/shared/lib';
 import { parseMdxFiles } from '@/shared/lib/server';
 import type { Tag } from './types';
 
@@ -15,6 +16,10 @@ export function getTags(): Tag[] {
     });
   });
 
-  const tags = Array.from(tagCountMap.entries()).map(([name, count]) => ({ name, count }));
+  const tags = Array.from(tagCountMap.entries()).map(([name, count]) => ({
+    name,
+    slug: slugify(name),
+    count,
+  }));
   return tags.sort((a, b) => b.count - a.count);
 }

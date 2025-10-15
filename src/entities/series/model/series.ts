@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { slugify } from '@/shared/lib';
 import { parseMdxFiles } from '@/shared/lib/server';
 import type { Series } from './type';
 
@@ -26,8 +27,9 @@ export function getSeries(): Series[] {
     }
   });
 
-  const seriesList = Array.from(seriesMap.entries()).map(([title, { count, lastDate }]) => ({
-    title,
+  const seriesList = Array.from(seriesMap.entries()).map(([name, { count, lastDate }]) => ({
+    name,
+    slug: slugify(name),
     count,
     updatedAt: dayjs(lastDate).format('MMMM DD, YYYY'),
   }));
