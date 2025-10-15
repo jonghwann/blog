@@ -2,38 +2,18 @@ import dayjs from 'dayjs';
 import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
 import { parseMdxFiles } from '@/shared/lib/server';
-import type { MdxFile } from '@/shared/types';
 import type { Navigation, Post } from './types';
 
 /**
- * MDX 파일을 Post 객체로 변환합니다.
- */
-function mdxFileToPost(mdxFile: MdxFile): Post {
-  const {
-    slug,
-    data: { title, date, tags },
-    content,
-  } = mdxFile;
-
-  return {
-    slug,
-    title,
-    date: dayjs(date).format('MMMM DD, YYYY'),
-    description: generateDescription(content),
-    tags,
-  };
-}
-
-/**
- * 코드 블록과 마크다운 문법을 제거하고 description을 생성합니다.
+ * MDX 콘텐츠에서 코드 블록과 마크다운 문법을 제거하고 순수 텍스트를 생성합니다.
  * @param content - MDX 콘텐츠
- * @param maxLength - 최대 길이 (기본값: 150)
+ * @param maxLength - 텍스트 최대 길이 (선택, 지정하지 않으면 전체 텍스트 반환)
  */
-function generateDescription(content: string, maxLength = 150): string {
+function extractPlainText(content: string, maxLength?: number): string {
   const withoutCode = content.replace(/```[\s\S]*?```/g, '').replace(/`[^`]+`/g, '');
   const text = removeMd(withoutCode).replace(/\s+/g, ' ').trim();
 
-  return text.length > maxLength ? text.slice(0, maxLength) + '…' : text;
+  return maxLength && text.length > maxLength ? text.slice(0, maxLength) + '…' : text;
 }
 
 /**
@@ -48,9 +28,18 @@ function sortPostsByDate(posts: Post[]): Post[] {
  * @param tag - 특정 태그로 필터링 (선택사항)
  * @returns 최신순으로 정렬된 포스트 배열
  */
-export function getPosts(tag?: string): Post[] {
+export function getPosts(tag?: string, includeContent = false): Post[] {
   const mdxFiles = parseMdxFiles();
-  const posts = mdxFiles.map(mdxFileToPost);
+
+  const posts = mdxFiles.map(({ slug, data: { title, date, tags }, content }) => ({
+    slug,
+    title,
+    date: dayjs(date).format('MMMM DD, YYYY'),
+    description: extractPlainText(content, 150),
+    ...(includeContent && { content: extractPlainText(content) }),
+    tags,
+  }));
+
   const filteredPosts = tag ? posts.filter(({ tags }) => tags?.includes(tag)) : posts;
 
   return sortPostsByDate(filteredPosts);
@@ -111,23 +100,4 @@ export function getPostNavigation(slug: string): Navigation {
         ? { slug: posts[currentIndex + 1].slug, title: posts[currentIndex + 1].title }
         : null,
   };
-}
-
-/**
- * 포스트를 검색합니다.
- * @param search - 검색어 (제목, 본문 검색)
- * @returns 최신순으로 정렬된 포스트 배열
- */
-export function searchPosts(search: string): Post[] {
-  search = search.toLowerCase().trim();
-  const mdxFiles = parseMdxFiles();
-
-  const filteredFiles = search
-    ? mdxFiles.filter(
-        ({ data: { title }, content }) =>
-          title.toLowerCase().includes(search) || content.toLowerCase().includes(search),
-      )
-    : mdxFiles;
-
-  return sortPostsByDate(filteredFiles.map(mdxFileToPost));
 }

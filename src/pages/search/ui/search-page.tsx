@@ -1,22 +1,28 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { searchPostsAction } from '@/entities/post';
+import type { Post } from '@/entities/post';
 import { Input, Title } from '@/shared/ui';
 import { PostList } from '@/widgets/post-list';
 
-export function SearchPage() {
+export function SearchPage({ posts }: { posts: Post[] }) {
   const [search, setSearch] = useState('');
 
-  const { data: posts = [] } = useQuery({
-    queryKey: ['search', search],
-    queryFn: () => searchPostsAction(search),
-  });
+  const filteredPosts = useMemo(() => {
+    if (!search) return posts;
+
+    const lowerSearch = search.toLowerCase();
+
+    return posts.filter(({ title, content }) => {
+      return (
+        title.toLowerCase().includes(lowerSearch) || content?.toLowerCase().includes(lowerSearch)
+      );
+    });
+  }, [posts, search]);
 
   return (
     <section className="w-full">
-      <Title>There are {posts.length} posts.</Title>
+      <Title>There are {filteredPosts.length} posts.</Title>
 
       <Input
         value={search}
@@ -26,7 +32,7 @@ export function SearchPage() {
         classNames={{ container: 'mb-[70px]', input: 'pl-10', icon: 'left-3' }}
       />
 
-      <PostList posts={posts} />
+      <PostList posts={filteredPosts} />
     </section>
   );
 }
