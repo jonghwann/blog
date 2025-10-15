@@ -1,3 +1,10 @@
-export function Title({ children }: { children: React.ReactNode }) {
-  return <h1 className="mb-6 font-bold text-lg">{children}</h1>;
+import { cn } from '../lib';
+
+interface TitleProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function Title({ children, className }: TitleProps) {
+  return <h1 className={cn('mb-6 font-bold text-lg', className)}>{children}</h1>;
 }
