@@ -14,7 +14,7 @@ export function Header() {
     >
       <div className="mx-0 flex h-14 items-center justify-between min-[860px]:mx-16">
         <Link href="/" className="font-source-code-pro tracking-[-1px] sm:text-2xl">
-          jonghwan.blog
+          jonghwan
         </Link>
 
         <div className="flex items-center gap-[15px]">

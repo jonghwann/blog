@@ -1,6 +1,7 @@
 'use client';
 import Comments from '@giscus/react';
 import { useTheme } from 'next-themes';
+import { SITE_CONFIG } from '@/shared/config';
 
 export function Giscus({ className }: { className?: string }) {
   const { resolvedTheme } = useTheme();
@@ -8,17 +9,17 @@ export function Giscus({ className }: { className?: string }) {
   return (
     <div className={className}>
       <Comments
-        repo="jonghwann/blog"
-        repoId="R_kgDOP5iebg"
-        category="Announcements"
-        categoryId="DIC_kwDOP5iebs4CwcAG"
-        mapping="pathname"
-        strict="0"
-        reactionsEnabled="1"
-        emitMetadata="0"
-        inputPosition="bottom"
+        repo={SITE_CONFIG.giscus.repo}
+        repoId={SITE_CONFIG.giscus.repoId}
+        category={SITE_CONFIG.giscus.category}
+        categoryId={SITE_CONFIG.giscus.categoryId}
+        mapping={SITE_CONFIG.giscus.mapping}
+        strict={SITE_CONFIG.giscus.strict}
+        reactionsEnabled={SITE_CONFIG.giscus.reactionsEnabled}
+        emitMetadata={SITE_CONFIG.giscus.emitMetadata}
+        inputPosition={SITE_CONFIG.giscus.inputPosition}
         theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
-        lang="ko"
+        lang={SITE_CONFIG.giscus.lang}
       />
     </div>
   );

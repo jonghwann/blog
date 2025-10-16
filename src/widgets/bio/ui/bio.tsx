@@ -1,20 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SITE_CONFIG } from '@/shared/config';
 import { cn } from '@/shared/lib';
 import { Icon } from '@/shared/ui';
 
 const icons = [
-  { icon: FaGithub, href: 'https://github.com/jonghwann' },
-  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/jonghwan' },
+  { icon: FaGithub, href: SITE_CONFIG.social.github },
+  { icon: FaLinkedin, href: SITE_CONFIG.social.linkedin },
 ];
 
 export function Bio({ className }: { className?: string }) {
   return (
     <aside className={cn('flex items-center gap-4', className)}>
       <Image
-        src="/profile.jpg"
-        alt="profile"
+        src={SITE_CONFIG.author.avatar}
+        alt="avatar"
         width={128}
         height={128}
         priority
@@ -22,10 +23,8 @@ export function Bio({ className }: { className?: string }) {
       />
 
       <div>
-        <h2 className="mb-1 font-bold text-2xl leading-6">@jonghwan</h2>
-        <p className="mb-3 font-nanum-square-round text-base">
-          꾸준히, 의미있는 학습을 기록하기 위한 공간입니다.
-        </p>
+        <h2 className="mb-1 font-bold text-2xl leading-6">@{SITE_CONFIG.author.username}</h2>
+        <p className="mb-3 font-nanum-square-round text-base">{SITE_CONFIG.author.tagline}</p>
 
         <nav>
           <ul className="flex items-center gap-2">
