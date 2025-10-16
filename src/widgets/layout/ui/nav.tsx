@@ -5,7 +5,7 @@ import { Icon } from '@/shared/ui';
 const icons = [
   { icon: FaTags, href: '/tags' },
   { icon: FaListUl, href: '/series' },
-  { icon: FaRss, href: '/xml' },
+  { icon: FaRss, href: '/rss.xml' },
   { icon: FaSearch, href: '/search' },
 ];
 
