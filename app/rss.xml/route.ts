@@ -1,7 +1,7 @@
 import { getPosts } from '@/entities/post/model/posts';
 import { SITE_CONFIG } from '@/shared/config';
 
-export async function GET() {
+export function GET() {
   const posts = getPosts({ includeContent: true });
   const lastPostDate = posts[0]?.date || new Date().toISOString();
 
