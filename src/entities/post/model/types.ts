@@ -9,6 +9,12 @@ export interface Post {
   series?: string;
 }
 
+export interface GetPostsOptions {
+  tag?: string;
+  series?: string;
+  includeContent?: boolean;
+}
+
 export interface Navigation {
   prev: NavigationItem | null;
   next: NavigationItem | null;

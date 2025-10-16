@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import readingTime from 'reading-time';
 import removeMd from 'remove-markdown';
 import { parseMdxFiles } from '@/shared/lib/server';
-import type { Navigation, Post } from './types';
+import type { GetPostsOptions, Navigation, Post } from './types';
 
 /**
  * MDX 콘텐츠에서 코드 블록과 마크다운 문법을 제거하고 순수 텍스트를 생성합니다.
@@ -25,22 +25,33 @@ function sortPostsByDate(posts: Post[]): Post[] {
 
 /**
  * 포스트 목록을 조회합니다.
- * @param tag - 특정 태그로 필터링 (선택사항)
+ * @param options - 필터링 및 조회 옵션
  * @returns 최신순으로 정렬된 포스트 배열
  */
-export function getPosts(tag?: string, includeContent = false): Post[] {
+export function getPosts(options: GetPostsOptions = {}): Post[] {
+  const { tag, series, includeContent = false } = options;
+
   const mdxFiles = parseMdxFiles();
 
-  const posts = mdxFiles.map(({ slug, data: { title, date, tags }, content }) => ({
+  const posts = mdxFiles.map(({ slug, data: { title, date, tags, series }, content }) => ({
     slug,
     title,
     date: dayjs(date).format('MMMM DD, YYYY'),
     description: extractPlainText(content, 150),
     ...(includeContent && { content: extractPlainText(content) }),
     tags,
+    ...(series && { series }),
   }));
 
-  const filteredPosts = tag ? posts.filter(({ tags }) => tags?.includes(tag)) : posts;
+  let filteredPosts = posts;
+
+  if (tag) {
+    filteredPosts = filteredPosts.filter(({ tags }) => tags?.includes(tag));
+  }
+
+  if (series) {
+    filteredPosts = filteredPosts.filter(({ series: postSeries }) => postSeries === series);
+  }
 
   return sortPostsByDate(filteredPosts);
 }

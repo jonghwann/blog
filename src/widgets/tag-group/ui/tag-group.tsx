@@ -4,15 +4,15 @@ import { TagLink } from '@/shared/ui';
 
 interface TagGroupProps {
   tags: Tag[];
-  tag?: string;
+  activeSlug?: string;
   className?: string;
 }
 
-export function TagGroup({ tags, tag, className }: TagGroupProps) {
+export function TagGroup({ tags, activeSlug, className }: TagGroupProps) {
   return (
     <ul className={cn('flex flex-wrap items-center gap-2', className)}>
       {tags.map(({ name, slug, count }) => {
-        const isActive = slug === tag;
+        const isActive = slug === activeSlug;
         const href = isActive ? '/tags' : `/tags/${slug}`;
 
         return (

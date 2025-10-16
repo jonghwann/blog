@@ -4,23 +4,23 @@ import { Title } from '@/shared/ui';
 import { PostList } from '@/widgets/post-list';
 import { TagGroup } from '@/widgets/tag-group';
 
-export default async function Page({ params }: { params: Promise<{ tag?: string[] }> }) {
-  const { tag: tagArray } = await params;
-  const tagSlug = tagArray?.[0] && decodeURIComponent(tagArray[0]);
+export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
+  const { slug } = await params;
+  const tagSlug = slug?.[0] && decodeURIComponent(slug[0]);
 
   const tags = getTags();
-  const tag = tags.find(({ slug }) => slug === tagSlug);
-  const posts = getPosts(tag?.name);
+  const currentTag = tags.find((tag) => tag.slug === tagSlug);
+  const posts = getPosts({ tag: currentTag?.name });
 
   return (
     <section className="w-full">
       <Title>
-        {tag
-          ? `There are ${posts.length} posts that match #${tag.name}.`
+        {currentTag
+          ? `There are ${posts.length} posts that match #${currentTag.name}.`
           : `There are ${tags.length} tags.`}
       </Title>
 
-      <TagGroup tags={tags} tag={tag?.slug} className="mb-14" />
+      <TagGroup tags={tags} activeSlug={currentTag?.slug} className="mb-14" />
       <PostList posts={posts} />
     </section>
   );
@@ -30,5 +30,5 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const tags = getTags();
-  return [{ tag: undefined }, ...tags.map(({ slug }) => ({ tag: [slug] }))];
+  return [{ slug: undefined }, ...tags.map(({ slug }) => ({ slug: [slug] }))];
 }
