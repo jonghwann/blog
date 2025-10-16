@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const toc = generateToc(post.content ?? '');
 
   return (
-    <section className="mt-3 w-full">
+    <section className="w-full">
       <ScrollProgressBar />
       <PostHeader {...post} />
 
