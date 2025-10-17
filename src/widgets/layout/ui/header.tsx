@@ -9,12 +9,12 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 z-[var(--z-header)] w-full bg-background/80 px-4 shadow-[var(--shadow)] backdrop-blur-[5px]"
+      className="fixed top-0 z-[var(--z-header)] w-full border-b bg-background/80 px-4 backdrop-blur-[5px]"
       style={{ marginTop }}
     >
-      <div className="mx-0 flex h-14 items-center justify-between min-[860px]:mx-16">
-        <Link href="/" className="font-source-code-pro tracking-[-1px] sm:text-2xl">
-          jonghwan
+      <div className="mx-auto flex h-14 max-w-[900px] items-center justify-between">
+        <Link href="/" className="font-bold text-xl tracking-[-1px]">
+          Jonghwan.blog
         </Link>
 
         <div className="flex items-center gap-[15px]">

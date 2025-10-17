@@ -6,9 +6,9 @@ export default function Page() {
   const series = getSeries();
 
   return (
-    <section className="w-full">
+    <div>
       <Title className="mb-14">There are {series.length} series.</Title>
       <SeriesList series={series} />
-    </section>
+    </div>
   );
 }

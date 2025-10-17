@@ -42,7 +42,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const { default: Post } = await import(`../../content/${slug}.mdx`);
+  const { default: Post } = await import(`../../../content/${slug}.mdx`);
 
   let post: Post;
   let navigation: Navigation;
@@ -58,21 +58,21 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const toc = generateToc(post.content ?? '');
 
   return (
-    <section className="w-full">
+    <div>
       <ScrollProgressBar />
       <PostHeader {...post} />
 
-      <div className="flex gap-16">
-        <div className="w-full xl:min-w-[680px]">
+      <div className="flex gap-14">
+        <div className="min-w-[680px]">
           <Post />
           <PostNavigation navigation={navigation} />
           <Bio className="my-12 border-b pb-8" />
           <Giscus />
         </div>
 
-        <PostToc className="hidden min-[1301px]:block" toc={toc} />
+        <PostToc className="hidden xl:block" toc={toc} />
       </div>
-    </section>
+    </div>
   );
 }
 

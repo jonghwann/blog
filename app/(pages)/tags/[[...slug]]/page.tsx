@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   const posts = getPosts({ tag: currentTag?.name });
 
   return (
-    <section className="w-full">
+    <div>
       <Title>
         {currentTag
           ? `There are ${posts.length} posts that match #${currentTag.name}.`
@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
 
       <TagGroup tags={tags} activeSlug={currentTag?.slug} className="mb-14" />
       <PostList posts={posts} />
-    </section>
+    </div>
   );
 }
 

@@ -21,7 +21,7 @@ export function SearchPage({ posts }: { posts: Post[] }) {
   }, [posts, search]);
 
   return (
-    <section className="w-full">
+    <div>
       <Title>There are {filteredPosts.length} posts.</Title>
 
       <Input
@@ -33,6 +33,6 @@ export function SearchPage({ posts }: { posts: Post[] }) {
       />
 
       <PostList posts={filteredPosts} />
-    </section>
+    </div>
   );
 }

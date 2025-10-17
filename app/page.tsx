@@ -9,13 +9,10 @@ export default function Page() {
   const tags = getTags();
 
   return (
-    <section className="mt-7 w-full">
-      <Bio className="mb-12 border-b pb-12" />
-
-      <div className="relative">
-        <PostList posts={posts} />
-        <TagList tags={tags} className="absolute top-0 left-[112%] hidden min-[1301px]:block" />
-      </div>
+    <section className="mx-auto mt-7 w-full max-w-[812px]">
+      <Bio className="mb-12" />
+      <PostList posts={posts} className="float-left w-[590px] border-t pt-12" />
+      <TagList tags={tags} className="sticky top-12 float-right mt-12" />
     </section>
   );
 }

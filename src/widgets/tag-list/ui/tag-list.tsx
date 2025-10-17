@@ -9,13 +9,13 @@ interface TagListProps {
 
 export function TagList({ tags, className }: TagListProps) {
   return (
-    <aside className={cn('w-[200px]', className)}>
+    <aside className={cn('w-[170px]', className)}>
       <nav>
-        <h3 className="mb-6 font-bold leading-[1]">TAG LIST</h3>
+        <h3 className="mb-6 font-bold text-accent-foreground leading-[1]">TAG</h3>
 
         <ul className="flex flex-col gap-4">
           {tags.map(({ name, slug, count }) => (
-            <li key={slug} className="leading-[1]">
+            <li key={slug} className="truncate leading-[1]">
               <Link
                 href={`/tags/${slug}`}
                 className="font-nanum-square-round text-secondary-foreground hover:text-foreground"

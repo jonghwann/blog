@@ -17,10 +17,10 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   }
 
   return (
-    <section className="w-full">
+    <div>
       <SeriesHeader {...currentSeries} />
       <PostList posts={posts} />
-    </section>
+    </div>
   );
 }
 

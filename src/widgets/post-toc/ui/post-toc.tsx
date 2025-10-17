@@ -12,18 +12,16 @@ export function PostToc({ toc, className }: PostTocProps) {
   const activeId = useActiveHeadings(toc);
 
   return (
-    <aside className={cn('block w-[240px] shrink-0', className)}>
-      <nav className="sticky top-[100px] font-medium text-sm">
+    <aside className={cn('block min-w-[200px]', className)}>
+      <nav className="sticky top-[100px] mr-4 border-l pl-4 font-medium text-xs">
         <ul className="flex flex-col gap-2">
           {toc.map(({ id, title, link, depth }) => (
             <li key={title} className={depth ? 'ml-4' : ''}>
               <Link
                 href={link}
                 className={cn(
-                  'block font-nanum-round transition-transform',
-                  id === (activeId ?? 0)
-                    ? '-translate-x-[10px] text-accent-foreground'
-                    : 'translate-x-0',
+                  'block break-words font-nanum-round text-tertiary-foreground',
+                  id === (activeId ?? 0) && 'text-foreground',
                 )}
               >
                 {title}
