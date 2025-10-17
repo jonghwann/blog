@@ -75,6 +75,7 @@ export function getPost(slug: string): Post {
     slug,
     title,
     date: dayjs(date).format('MMMM DD, YYYY'),
+    description: extractPlainText(content, 150),
     content: content,
     readingTime: Math.ceil(readingTime(content).minutes),
     tags,

@@ -1,7 +1,9 @@
 export const SITE_CONFIG = {
+  url: 'https://my-blog.com',
   title: 'my blog title',
   description: 'my blog description',
-  url: 'https://my-blog.com',
+  siteName: 'my blog',
+  ogImage: '/opengraph.png',
   author: {
     username: 'Jonghwan',
     tagline: 'Next.js blog starter by Jonghwan',
