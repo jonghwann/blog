@@ -12,7 +12,7 @@ export default function Page() {
     <section className="mx-auto mt-7 w-full max-w-[812px]">
       <Bio className="mb-12" />
       <PostList posts={posts} className="float-left w-full border-t pt-12 lg:w-[590px]" />
-      <TagList tags={tags} className="sticky top-12 float-right mt-12 hidden lg:block" />
+      <TagList tags={tags} className="sticky top-28 float-right mt-12 hidden lg:block" />
     </section>
   );
 }

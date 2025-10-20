@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export function useScrollVisibility(elemHeight: number) {
+export function useScrollVisibility(elemHeight: number, enabled = true) {
   const lastScrollPosition = useRef(0);
   const isLastScrollingUp = useRef(false);
   const scrollTransitionPoint = useRef(0);
@@ -9,6 +9,8 @@ export function useScrollVisibility(elemHeight: number) {
   const [marginTop, setMarginTop] = useState(0);
 
   const handleScroll = useCallback(() => {
+    if (!enabled) return;
+
     const currentScrollPosition = window.scrollY;
 
     const isScrollingUp = lastScrollPosition.current > currentScrollPosition;
@@ -34,21 +36,28 @@ export function useScrollVisibility(elemHeight: number) {
 
     isLastScrollingUp.current = isScrollingUp;
     lastScrollPosition.current = currentScrollPosition;
-  }, [elemHeight]);
+  }, [elemHeight, enabled]);
 
   useEffect(() => {
+    if (!enabled) {
+      setMarginTop(0);
+      return;
+    }
+
     const currentScrollPosition = window.scrollY;
     scrollTransitionPoint.current = currentScrollPosition + elemHeight;
     lastScrollPosition.current = currentScrollPosition;
-  }, [elemHeight]);
+  }, [elemHeight, enabled]);
 
   useEffect(() => {
+    if (!enabled) return;
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll]);
+  }, [handleScroll, enabled]);
 
   return marginTop;
 }

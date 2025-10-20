@@ -63,7 +63,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <PostHeader {...post} />
 
       <div className="flex gap-14">
-        <div className="min-w-[680px]">
+        <div className="w-full lg:min-w-[680px]">
           <Post />
           <PostNavigation navigation={navigation} />
           <Bio className="my-12 border-b pb-8" />

@@ -40,7 +40,7 @@ const iconVariants = cva('absolute size-6 transition-transform duration-200 ease
   },
 });
 
-const labelVariants = cva('flex w-full font-bold text-xs', {
+const labelVariants = cva('flex w-full text-xs', {
   variants: {
     variant: {
       prev: 'justify-start',
@@ -60,7 +60,7 @@ export function PostNavigationItem({ variant = 'prev', slug, title }: PostNaviga
 
       <div className="flex min-w-0 flex-col justify-end gap-1">
         <span className={labelVariants({ variant })}>{label}</span>
-        <h4 className="truncate font-bold">{title}</h4>
+        <h4 className="truncate">{title}</h4>
       </div>
     </Link>
   );

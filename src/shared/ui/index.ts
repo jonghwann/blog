@@ -1,3 +1,12 @@
+export { AnimateIcon } from './animate-ui/icons/icon';
+export { Link } from './animate-ui/icons/link';
+export { List } from './animate-ui/icons/list';
+export { Menu } from './animate-ui/icons/menu';
+export { Moon } from './animate-ui/icons/moon';
+export { Search } from './animate-ui/icons/search';
+export { Sun } from './animate-ui/icons/sun';
+export { Tag } from './animate-ui/icons/tag';
+export { Wifi } from './animate-ui/icons/wifi';
 export { Button } from './button';
 export { Icon } from './icon';
 export { Input } from './input';

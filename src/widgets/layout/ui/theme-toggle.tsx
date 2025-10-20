@@ -1,13 +1,12 @@
 'use client';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
 import { cn } from '@/shared/lib';
-import { Icon } from '@/shared/ui';
+import { AnimateIcon, Moon, Sun } from '@/shared/ui';
 
 const icons = [
-  { icon: FaSun, theme: 'light' },
-  { icon: FaMoon, theme: 'dark' },
+  { icon: Sun, theme: 'light' },
+  { icon: Moon, theme: 'dark' },
 ];
 
 export function ThemeToggle() {
@@ -31,20 +30,17 @@ export function ThemeToggle() {
   if (!mounted) return null;
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      className="group size-5 cursor-pointer overflow-hidden"
-    >
-      {icons.map(({ icon, theme }) => (
-        <Icon
-          key={theme}
-          Icon={icon}
-          className={cn(
-            'transition-transform duration-300 ease-in-out group-hover:text-foreground',
-            resolvedTheme === 'light' ? '-translate-y-5' : 'translate-y-0',
-          )}
-        />
+    <button type="button" onClick={handleClick} className="relative size-5 cursor-pointer">
+      {icons.map(({ icon: Icon, theme }) => (
+        <AnimateIcon key={theme} animateOnHover>
+          <Icon
+            size={20}
+            className={cn(
+              'absolute inset-0 transition-opacity duration-300 ease-in-out',
+              resolvedTheme === theme ? 'opacity-100' : 'pointer-events-none opacity-0',
+            )}
+          />
+        </AnimateIcon>
       ))}
     </button>
   );
