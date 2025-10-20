@@ -24,7 +24,7 @@ export function Bio({ className }: { className?: string }) {
 
       <div>
         <h2 className="mb-1 font-bold text-2xl leading-6">@{SITE_CONFIG.author.username}</h2>
-        <p className="mb-3 font-nanum-square-round text-base">{SITE_CONFIG.author.tagline}</p>
+        <p className="mb-3 text-base">{SITE_CONFIG.author.tagline}</p>
 
         <nav>
           <ul className="flex items-center gap-2">

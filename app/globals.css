@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../src/shared/styles/animations.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -16,9 +17,7 @@
   --color-inverse: var(--inverse);
   --color-inverse-foreground: var(--inverse-foreground);
   --color-inverse-hover: var(--inverse-hover);
-  --font-nanum-square: var(--font-nanum-square);
-  --font-nanum-square-round: var(--font-nanum-square-round);
-  --font-source-code-pro: var(--source-code-pro);
+  --font-noto-sans-kr: var(--font-noto-sans-kr);
   --z-header: 100;
   --z-scroll-progress-bar: 200;
 }
@@ -32,7 +31,7 @@
   --secondary: #f1f3f5;
   --secondary-foreground: #212121;
   --secondary-hover: #dee2e6;
-  --tertiary-foreground: #868e96;
+  --tertiary-foreground: #7E8082;
   --accent-foreground: #2BC1BC;
   --inverse: #424242;
   --inverse-foreground: #ffffff;
@@ -60,7 +59,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-nanum-square;
+    @apply bg-background text-foreground font-noto-sans-kr;
   }
 
   .no-color-transitions * {

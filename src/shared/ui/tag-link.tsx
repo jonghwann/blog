@@ -13,7 +13,7 @@ export function TagLink({ children, href, isActive, className }: TagLinkProps) {
     <Link
       href={href}
       className={cn(
-        'block rounded-full bg-secondary px-[10px] py-[6px] font-nanum-square-round text-sm hover:bg-secondary-hover',
+        'block rounded-full bg-secondary px-[10px] py-[6px] text-sm hover:bg-secondary-hover',
         isActive && 'bg-inverse text-inverse-foreground hover:bg-inverse',
         className,
       )}

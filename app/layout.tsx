@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { QueryProvider, ThemeProvider } from '@/app/providers';
-import { nanumSquare, nanumSquareRound, SITE_CONFIG, sourceCodePro } from '@/shared/config';
+import { notoSansKR, SITE_CONFIG } from '@/shared/config';
 import { cn } from '@/shared/lib';
 import { Layout } from '@/widgets/layout';
 import './globals.css';
@@ -36,14 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="scroll-smooth" suppressHydrationWarning>
-      <body
-        className={cn(
-          nanumSquare.variable,
-          nanumSquareRound.variable,
-          sourceCodePro.variable,
-          'antialiased',
-        )}
-      >
+      <body className={cn(notoSansKR.variable, 'antialiased')}>
         <QueryProvider>
           <ThemeProvider>
             <Layout>{children}</Layout>
