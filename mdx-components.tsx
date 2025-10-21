@@ -28,7 +28,7 @@ const components: MDXComponents = {
   ),
   blockquote: ({ children, ...props }) => (
     <blockquote
-      className="mt-[1.5rem] mb-[2rem] rounded-[0.5rem] border-l-[0.5rem] bg-[#F4F4F4] p-[1rem] dark:bg-[#1a1e22] [&>p]:mt-[2rem]"
+      className="mt-[1.5rem] mb-[2rem] rounded-[0.5rem] border-l-[0.5rem] bg-[#F4F4F4] p-[1rem] dark:bg-[#1c1c1f] [&>p]:mt-[2rem]"
       {...props}
     >
       {children}
@@ -68,7 +68,7 @@ const components: MDXComponents = {
   ),
   pre: ({ children, ...props }) => (
     <pre
-      className="!bg-[#2d2d2d] mb-[2rem] overflow-auto rounded-[0.5rem] py-[1em] leading-[1.9] shadow-[var(--shadow-code)] sm:text-[1.05rem] lg:text-[1.1rem] xl:text-[1.15rem] [&_[data-highlighted-line]]:border-accent-foreground [&_[data-highlighted-line]]:border-l-4 [&_[data-highlighted-line]]:bg-[rgba(55,148,255,0.1)] [&_code>span]:px-[1em]"
+      className="!bg-[#2d2d2d] mb-[2rem] overflow-auto rounded-[0.5rem] py-[1em] leading-[1.9] shadow-[var(--shadow)] sm:text-[1.05rem] lg:text-[1.1rem] xl:text-[1.15rem] [&_[data-highlighted-line]]:border-accent-foreground [&_[data-highlighted-line]]:border-l-4 [&_[data-highlighted-line]]:bg-[rgba(55,148,255,0.1)] [&_code>span]:px-[1em]"
       {...props}
     >
       {children}
@@ -79,7 +79,7 @@ const components: MDXComponents = {
       width={0}
       height={0}
       sizes="100vw"
-      className="h-auto w-full rounded-[0.5rem] shadow-[var(--shadow-code)]"
+      className="h-auto w-full rounded-[0.5rem] shadow-[var(--shadow)]"
       {...props}
     />
   ),

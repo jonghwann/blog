@@ -15,7 +15,7 @@ export function Input({ icon, classNames, ...rest }: InputProps) {
       {icon && (
         <div
           className={cn(
-            '-translate-y-1/2 absolute top-1/2 text-border group-focus-within:text-foreground',
+            '-translate-y-1/2 absolute top-1/2 text-tertiary-foreground',
             classNames?.icon,
           )}
         >
@@ -26,9 +26,7 @@ export function Input({ icon, classNames, ...rest }: InputProps) {
       <input
         autoComplete="off"
         className={cn(
-          'h-[46px] w-full min-w-0 rounded-lg bg-transparent px-3 font-sans text-base outline-none ring-1 ring-border',
-          'transition-shadow duration-200 ease-in-out',
-          'focus-visible:ring-foreground',
+          'h-[46px] w-full min-w-0 rounded-lg bg-transparent px-3 text-base outline-none ring-1 ring-border placeholder:text-tertiary-foreground',
           classNames?.input,
         )}
         {...rest}

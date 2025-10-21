@@ -8,7 +8,6 @@
   --color-foreground: var(--foreground);
   --color-border: var(--border);
   --color-shadow: var(--shadow);
-  --color-shadow-code: var(--shadow-code);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-hover: var(--secondary-hover);
@@ -26,31 +25,29 @@
   --background: #ffffff;
   --foreground: #000000;
   --border: #eeeeee;
-  --shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
-  --shadow-code: 0 0.2em 0.6em #e0e0e0;
+  --shadow: 0 0.2em 0.6em #e0e0e0;
   --secondary: #f1f3f5;
   --secondary-foreground: #212121;
   --secondary-hover: #dee2e6;
   --tertiary-foreground: #7E8082;
-  --accent-foreground: #2BC1BC;
-  --inverse: #424242;
+  --accent-foreground: #567ec0;
+  --inverse: #232326;
   --inverse-foreground: #ffffff;
-  --inverse-hover: #606060;
+  --inverse-hover: #3a3a3d;
 }
 
 .dark {
-  --background: #212529;
+  --background: #232326;
   --foreground: #ffffff;
   --border: #424242;
-  --shadow: 0px 0px 8px rgba(150, 150, 150, 0.08);
-  --shadow-code: 0 0.2em 0.6em #1a1e22;
+  --shadow: 0 0.2em 0.6em #1a1e22;
   --secondary: #2d2d2d;
   --secondary-foreground: #bdbdbd;
   --secondary-hover: #404040;
   --tertiary-foreground: #adb5bd;
   --inverse: #ffffff;
-  --inverse-foreground: #212529;
-  --inverse-hover: #e8e8e8;
+  --inverse-foreground: #232326;
+  --inverse-hover: #e0e0e0;
 }
 
 @layer base {

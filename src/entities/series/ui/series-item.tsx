@@ -4,7 +4,7 @@ import type { Series } from '@/entities/series';
 export function SeriesItem({ name, slug, count, updatedAt }: Series) {
   return (
     <article>
-      <Link href={`/series/${slug}`} className="mb-6 inline-block hover:text-accent-foreground">
+      <Link href={`/series/${slug}`} className="mb-6 inline-block">
         <h2 className="font-bold text-[32px] leading-[1.2]">{name}</h2>
       </Link>
 

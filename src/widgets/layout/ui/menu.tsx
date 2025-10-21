@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { cn } from '@/shared/lib';
 
@@ -16,8 +17,8 @@ export function Menu({ isOpen, onClick }: MenuProps) {
   return (
     <div
       className={cn(
-        'transition-all duration-300',
-        isOpen ? 'max-h-[200px] pb-3 opacity-100' : 'max-h-0 opacity-0',
+        'overflow-hidden transition-all duration-300',
+        isOpen ? 'max-h-[200px] pb-3 opacity-100' : 'pointer-events-none max-h-0 opacity-0',
       )}
     >
       <ul className="flex flex-col gap-1">

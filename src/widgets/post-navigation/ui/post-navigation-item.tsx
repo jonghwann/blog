@@ -20,7 +20,7 @@ const config = {
 };
 
 const linkVariants = cva(
-  'group relative flex w-full items-center rounded-sm bg-secondary px-4 py-5 font-nanum-square-round hover:bg-secondary-hover md:w-[282px]',
+  'group relative flex w-full items-center rounded-sm bg-secondary px-4 py-5 font-nanum-square-round hover:bg-secondary-hover lg:w-[282px]',
   {
     variants: {
       variant: {

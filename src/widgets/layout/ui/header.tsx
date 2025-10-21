@@ -7,9 +7,8 @@ import { Nav } from './nav';
 
 export function Header() {
   const { isVisible, toggle, hide } = useVisible();
-
   const isDesktop = useMediaQuery('(min-width: 1024px)');
-  const marginTop = useScrollVisibility(64, isDesktop);
+  const marginTop = useScrollVisibility(65, isDesktop);
 
   useEffect(() => {
     if (isDesktop && isVisible) {
