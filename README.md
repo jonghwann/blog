@@ -1,4 +1,14 @@
+<div align="center">
+    
 # Jonghwan Next.js Blog Template
+
+</div>
+
+<img width="1280" height="720" alt="6c977cb4-2c3b-492b-8f03-390c5e788a34" src="https://github.com/user-attachments/assets/640800c7-c7e7-417a-a5ab-59e6d94c5c8f" />
+
+Demo Website: [jonghwan.blog](https://www.jonghwan.blog/)
+
+<br/>
 
 ## 👋 소개
 
