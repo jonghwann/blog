@@ -1,15 +1,15 @@
-# Next.js Blog Starter
+# Jonghwan Next.js Blog Template
 
-## 📖 소개
+## 👋 소개
 
-Next.js Blog Starter는 빠르고 효율적인 기술 블로그 구축을 위한 템플릿입니다.
+Jonghwan Next.js Blog Template은 빠르고 효율적인 기술 블로그 구축을 위한 템플릿입니다.
 
 MDX 기반의 포스트 작성과 코드 하이라이팅을 지원하며, 태그와 시리즈 기능으로 콘텐츠를 체계적으로 관리할 수 있습니다.\
 또한 통합 검색을 통해 원하는 글을 손쉽게 찾을 수 있습니다.
 
-다크 모드, Giscus 댓글 시스템, SEO 최적화, 반응형 디자인 등 기술 블로그에 필요한 모든 기능을 갖추었습니다.
+다크 모드, Giscus 댓글 시스템, SEO 최적화, 반응형 디자인 등 기술 블로그에 필요한 모든 기능을 갖추고 있습니다.
 
-깔끔하고 유연한 디자인의 Next.js Blog Starter로 여러분만의 블로그를 시작해보세요.
+깔끔하고 유연한 디자인의 Jonghwan Next.js Blog Template으로 여러분만의 블로그를 시작해 보세요.
 
 <br/>
 
@@ -113,10 +113,10 @@ social: {
 
 ### Giscus 댓글 설정
 
-1. GitHub 저장소에서 **Discussions 활성화** (Settings > General > Features > ☑️ Discussions)
-2. [Giscus 앱](https://github.com/apps/giscus) 설치
-3. [Giscus 설정 페이지](https://giscus.app/ko)에서 설정값 생성
-4. 생성된 값을 입력:
+1. GitHub 저장소에서 **Discussions 활성화**해주세요. (Settings > General > Features > ☑️ Discussions)
+2. [Giscus 앱](https://github.com/apps/giscus)을 설치해 주세요.
+3. [Giscus 설정 페이지](https://giscus.app/ko)에서 설정값을 생성해 주세요.
+4. 생성된 값을 입력해 주세요:
 
 ```typescript
 giscus: {
@@ -146,7 +146,7 @@ giscus: {
 
 ### 새 포스트 작성
 
-모든 포스트는 `content/` 디렉토리의 `.mdx` 파일로 관리됩니다.\
+모든 포스트는 `content/` 디렉터리의 `.mdx` 파일로 관리됩니다.\
 아래 예시처럼 Frontmatter(메타데이터)와 본문을 작성하세요.
 
 ```mdx
