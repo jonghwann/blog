@@ -177,3 +177,5 @@ Vercel을 이용하면 블로그를 손쉽게 배포할 수 있습니다.
 
 ## 🌟 스타 히스토리
 
+[![Star History Chart](https://api.star-history.com/svg?repos=jonghwann/jonghwan-nextjs-blog-template&type=date&legend=top-left)](https://www.star-history.com/#jonghwann/jonghwan-nextjs-blog-template&type=date&legend=top-left)
+
