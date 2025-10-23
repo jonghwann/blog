@@ -51,6 +51,8 @@ MDX 기반의 포스트 작성과 코드 하이라이팅을 지원하며, 태그
     ├── shared/       # 공통 리소스
     └── widgets/      # UI 블록
 ```
+FSD는 일반적으로 큰 규모의 프로젝트에서 사용되지만, 이 템플릿에서는 확장 가능한 구조를 연습하고 익히기 위해 적용했습니다.\
+복잡하지 않은 예제 속에서도 FSD의 설계 원칙을 직접 체험할 수 있습니다.
 
 <br/>
 
@@ -79,8 +81,8 @@ MDX 기반의 포스트 작성과 코드 하이라이팅을 지원하며, 태그
 ### 설치
 
 1. 이 저장소를 포크합니다. (우측 상단 `Fork` 버튼 클릭)
-2. 로컬에 클론합니다. ```git clone https://github.com/YOUR_USERNAME/nextjs-blog-starter.git```
-3. 프로젝트 폴더로 이동합니다. ```cd nextjs-blog-starter```
+2. 로컬에 클론합니다. ```git clone https://github.com/YOUR_USERNAME/jonghwan-nextjs-blog-template.git```
+3. 프로젝트 폴더로 이동합니다. ```cd jonghwan-nextjs-blog-template```
 4. 의존성을 설치합니다. ```pnpm install```
 5. 개발 서버를 실행합니다. ```pnpm dev```
 6. 브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속하여 확인합니다.
