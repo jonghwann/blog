@@ -17,6 +17,7 @@
   --color-inverse-foreground: var(--inverse-foreground);
   --color-inverse-hover: var(--inverse-hover);
   --font-noto-sans-kr: var(--font-noto-sans-kr);
+  --font-source-code-pro: var(--font-source-code-pro);
   --z-header: 100;
   --z-scroll-progress-bar: 200;
 }

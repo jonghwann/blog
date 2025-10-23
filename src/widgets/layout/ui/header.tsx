@@ -23,7 +23,7 @@ export function Header() {
     >
       <nav className="mx-auto max-w-[900px]">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="font-bold text-xl tracking-[-1px]">
+          <Link href="/" className="font-bold font-source-code-pro text-xl tracking-[-1px]">
             jonghwan.blog
           </Link>
 
