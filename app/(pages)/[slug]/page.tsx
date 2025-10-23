@@ -42,11 +42,11 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
-  let PostContent: any;
+
+  let PostContent: React.ComponentType;
   let post: Post;
   let navigation: Navigation;
-  
+
   try {
     const { default: PostComponent } = await import(`../../../content/${slug}.mdx`);
     PostContent = PostComponent;
