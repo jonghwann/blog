@@ -42,12 +42,14 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const { default: Post } = await import(`../../../content/${slug}.mdx`);
-
+  
+  let PostContent: any;
   let post: Post;
   let navigation: Navigation;
-
+  
   try {
+    const { default: PostComponent } = await import(`../../../content/${slug}.mdx`);
+    PostContent = PostComponent;
     post = getCachedPost(slug);
     navigation = getPostNavigation(slug);
   } catch (error) {
@@ -64,7 +66,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       <div className="flex gap-14">
         <div className="w-full lg:min-w-[680px]">
-          <Post />
+          <PostContent />
           <PostNavigation navigation={navigation} />
           <Bio className="my-12 border-b pb-8" />
           <Giscus />
